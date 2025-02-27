@@ -1,12 +1,68 @@
 {% extends "std_app/base.html" %}
 
 {% block title %}
-    Home page
+    Home | Student Management System
 {% endblock title %}
 
-
 {% block content %}
-    <h1>Welcome to Student Management System</h1>
+    <div class="container mt-4">
+        <h1 class="text-center text-primary mb-4">Welcome to Student Management System</h1>
+
+        <!-- Add New Student Button -->
+        <div class="text-end mb-3">
+            <a href="{% url 'addstd' %}" class="btn btn-success">
+                <i class="fas fa-user-plus"></i> Add New Student
+            </a>
+        </div>
+
+        <h3 class="text-center text-dark">Student List</h3>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Roll</th>
+                        <th>Department</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>  <!-- Use loop counter instead of ID -->
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.roll }}</td>
+                            <td>{{ user.dept }}</td>
+                            <td>{{ user.address }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <!-- Edit Button -->
+                                <a href="{% url 'edit' user.id %}" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+
+                                <!-- Delete Button (Form to handle deletion securely) -->
+                                <form action="{% url 'delete' user.id %}" method="POST" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this student?');">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center text-danger">No students found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock content %}
-    
-    

@@ -1,0 +1,57 @@
+{% extends "std_app/base.html" %}
+
+{% block title %}
+    Update Student
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center text-primary">Update Student Details</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card bg-light shadow">
+                <div class="card-body">
+                    <form method="POST">{% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="roll" class="form-label">Roll</label>
+                            <input type="text" class="form-control" id="roll" name="roll" value="{{ user.roll }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="dept" class="form-label">Department</label>
+                            <input type="text" class="form-control" id="dept" name="dept" value="{{ user.dept }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" required>{{ user.address }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{ user.phone }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="submit" class="btn btn-warning me-3">Update Student</button>
+                            <a href="{% url 'home' %}" class="btn btn-danger">Cancel</a>
+                            <a href="{% url 'home' %}" class="btn btn-primary mx-4">Back to home</a>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
