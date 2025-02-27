@@ -1,54 +1,67 @@
 {% extends "std_app/base.html" %}
 
 {% block title %}
-    Add_Std page
+    Add Student | Student Management System
 {% endblock title %}
 
-
 {% block content %}
-<div class="container">
-    <h1 class="text-center">Add New Student</h1>
-    <div class="row">
-        <div class="col-mid-12">
-            <div class="card bg-info">
+<div class="container mt-5">
+    <h1 class="text-center text-primary fw-bold">Add New Student</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white text-center">
+                    <h4><i class="fas fa-user-plus"></i> Student Registration</h4>
+                </div>
                 <div class="card-body">
-                    <form method="POST">{% csrf_token %}
+                    <form method="POST" novalidate>
+                        {% csrf_token %}
+
                         <div class="mb-3">
-                            <div class="mb-3">
-                              <label for="name" class="form-label">Name</label>
-                              <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-                            </div>
-                            <div class="mb-3">
-                              <label for="Roll" class="form-label">Roll</label>
-                              <input type="text" class="form-control" id="roll" name="roll" placeholder="Enter your roll">
-                            </div>
-                            <div class="mb-3">
-                              <label for="dept" class="form-label">Department</label>
-                              <input type="text" class="form-control" id="dept" name="dept" placeholder="Enter your Department">
-                            </div>
-                            <div class="mb-3">
-                              <label for="address" class="form-label">Address</label>
-                              <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your address"></textarea>
-                            </div>
-                            <div class="mb-3">
-                              <label for="phone" class="form-label">Phone Number</label>
-                              <input class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
-                            </div>
-                          <label for="email" class="form-label">Email address</label>
-                          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" aria-describedby="emailHelp">
-                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                            <label for="name" class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter full name" required>
                         </div>
-                       
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-success">Add Student</button>
-                        </div>                      
+
+                        <div class="mb-3">
+                            <label for="roll" class="form-label fw-bold">Roll</label>
+                            <input type="text" class="form-control" id="roll" name="roll" placeholder="Enter roll number" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="dept" class="form-label fw-bold">Department</label>
+                            <input type="text" class="form-control" id="dept" name="dept" placeholder="Enter department name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="address" class="form-label fw-bold">Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter student address" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label fw-bold">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter student email" required>
+                            <div class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success btn-lg px-4">
+                                <i class="fas fa-check-circle"></i> Add Student
+                            </button>
+                            <a href="{% url 'home' %}" class="btn btn-secondary btn-lg px-4 ms-3">
+                                <i class="fas fa-arrow-left"></i> Back to Home
+                            </a>
+                        </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 {% endblock content %}
-    
-    

@@ -10,30 +10,70 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
-    <title>{% block title %} Employee Management {% endblock title %}</title>
+    <title>{% block title %}Student Management System{% endblock title %}</title>
+
+    <style>
+        /* Custom Styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            flex: 1;
+        }
+        .navbar-nav .nav-link {
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #f8d210 !important;
+        }
+        footer {
+            background-color: #212529;
+            color: white;
+            padding: 15px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">Student Management System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                <i class="fas fa-school"></i> Student Management
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">
+                            <i class="fas fa-home"></i> Home
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">
+                            <i class="fas fa-info-circle"></i> About
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'services' %}">Services</a>
+                        <a class="nav-link {% if request.path == '/services/' %}active{% endif %}" href="{% url 'services' %}">
+                            <i class="fas fa-concierge-bell"></i> Services
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'addstd' %}">Add Student</a>
+                        <a class="nav-link {% if request.path == '/addstd/' %}active{% endif %}" href="{% url 'addstd' %}">
+                            <i class="fas fa-user-plus"></i> Add Student
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -47,8 +87,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        <p class="mb-0">© 2025 Employee Management System | All Rights Reserved Under Abdullah Nazmus-Sakib | CSE,JU</p>
+    <footer>
+        <p class="mb-0">© 2025 Student Management System | Developed by <strong>Abdullah Nazmus-Sakib</strong> | CSE, JU</p>
     </footer>
 
     <!-- Bootstrap JS -->
